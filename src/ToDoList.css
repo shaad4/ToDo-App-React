@@ -1,0 +1,110 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background: #242424;
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+}
+
+.to-do-list{
+    background: white;
+    padding: 30px;
+    width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.to-do-list div{
+    display: flex;
+    gap: 10px;
+}
+
+h1{
+    text-align: center;
+    margin-bottom: 20px;
+    color: #1f2937;
+}
+
+input[type="text"]{
+    padding: 10px;
+    width: 70%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+.add-button{
+    padding: 10px 15px;
+    margin-left: 10px;
+    background: #4CAF50;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-button:hover{
+    background: #43a047;
+}
+
+ul{
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+li{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f8f8f8;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+}
+
+span{
+    flex: 1;
+    margin-left: 10px;
+}
+
+button{
+    padding: 6px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover{
+    opacity: 0.8;
+}
+
+.delete-button{
+    background: #e53935;
+    color: white;
+}
+
+.delete-button:hover{
+    background: #d32f2f;
+}
+
+.checkbox{
+    transform: scale(1.8);
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+.task-text{
+    flex: 1;
+    font-size: 16px;
+    color: #333;
+}
+
+.edit-button{
+    background: #1f2937;
+    color: white;
+}
+
+li:hover{
+    background: #efefef;
+}
