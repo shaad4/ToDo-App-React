@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import "./ToDoList.css";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function ToDoList(){
     const [tasks, setTasks] = useState(() => {
@@ -11,20 +13,40 @@ function ToDoList(){
     const [editIndex, setEditIndex] = useState(null);
     const [editText, setEditText] = useState("");
 
+    const [deadline, setDeadline] = useState("")
+
     function handleInputHandler(event){
         setTask(event.target.value)
 
     }
     function addTask(){
-        if(task.trim() === "") return;//if input box is empty then retun none
+        if(task.trim() === ""){
+            toast.error("Task cannot be empty");
+            return;
+        }
+
+        if(!deadline){
+            toast.error("Please select a deadline");
+            return;
+        }
+
+        const now = new Date();
+        const selectedDeadline = new Date(deadline);
+
+        if(selectedDeadline <= now){
+            toast.error("Deadline must be in the future");
+            return;
+        }
 
         const newTask = {
             text : task,
-            completed : false
+            completed : false,
+            deadline : deadline
         }
 
         setTasks([...tasks, newTask])
         setTask("")
+        setDeadline("")
     }
 
     function deleteTask(id){
@@ -59,12 +81,31 @@ function ToDoList(){
         setTasks(updatedTasks)
         setEditIndex(null)
     }
+
     
 
 
     useEffect(() => {
         localStorage.setItem("tasks", JSON.stringify(tasks))
     }, [tasks])
+
+    useEffect(() => {
+        const interval = setInterval(()=>{
+            const now = new Date();
+
+            tasks.forEach( task => {
+                if (task.deadline && !task.completed){
+                    const deadLineTime = new Date(task.deadline);
+
+                    if(now > deadLineTime){
+                        toast.error(`Deadline passed for: ${task.text}`)
+                    }
+                }
+            });
+        }, 30000);
+
+        return () => clearInterval(interval);
+    }, [tasks]);
 
     return(
         <div className="to-do-list">
@@ -76,6 +117,13 @@ function ToDoList(){
                     placeholder="Enter a Task"
                     value={task}
                     onChange={handleInputHandler}/>
+                
+                <input
+                    type="datetime-local"
+                    value={deadline}
+                    min={new Date().toISOString().slice(0,16)}
+                    onChange={(e)=>setDeadline(e.target.value)}/>
+
                 <button
                     className="add-button"
                     onClick={addTask}>
@@ -95,6 +143,10 @@ function ToDoList(){
                                 )
                             
                             }
+                            <span className="deadline">
+                                {task.deadline  && new Date(task.deadline).toLocaleString()}
+
+                            </span>
                             <input 
                                 type="checkbox"
                                 className="checkbox"
@@ -121,7 +173,9 @@ function ToDoList(){
                    
                 })}
             </ul>
+            <ToastContainer position="top-right" autoClose={3000} />
         </div>
+        
     )
 }
 

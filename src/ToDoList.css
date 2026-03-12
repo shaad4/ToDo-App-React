@@ -1,110 +1,149 @@
-body{
-    font-family: Arial, Helvetica, sans-serif;
-    background: #242424;
-    display: flex;
-    justify-content: center;
-    margin-top: 80px;
+:root {
+  --primary-color: #6366f1;
+  --primary-hover: #4f46e5;
+  --bg-color: #2885e3;
+  --card-bg: #ffffff;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --danger: #ef4444;
+  --success: #22c55e;
+  --border: #e2e8f0;
 }
 
-.to-do-list{
-    background: white;
-    padding: 30px;
-    width: 400px;
-    border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+body {
+  background-color: var(--bg-color);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
 }
 
-.to-do-list div{
-    display: flex;
-    gap: 10px;
+.to-do-list {
+  background: var(--card-bg);
+  width: 100%;
+  max-width: 500px;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
-h1{
-    text-align: center;
-    margin-bottom: 20px;
-    color: #1f2937;
+h1 {
+  color: var(--text-main);
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
 }
 
-input[type="text"]{
-    padding: 10px;
-    width: 70%;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    outline: none;
+/* Input Section */
+.to-do-list > div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 2rem;
 }
 
-.add-button{
-    padding: 10px 15px;
-    margin-left: 10px;
-    background: #4CAF50;
-    border: none;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
+input[type="text"], 
+input[type="datetime-local"] {
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s;
 }
 
-.add-button:hover{
-    background: #43a047;
+input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
 }
 
-ul{
-    list-style: none;
-    padding: 0;
-    margin-top: 20px;
+.add-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
 }
 
-li{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: #f8f8f8;
-    padding: 12px;
-    margin-bottom: 10px;
-    border-radius: 6px;
+.add-button:hover {
+  background-color: var(--primary-hover);
 }
 
-span{
-    flex: 1;
-    margin-left: 10px;
+/* List Styling */
+ul {
+  list-style: none;
+  padding: 0;
 }
 
-button{
-    padding: 6px 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+li {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto auto;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
 }
 
-button:hover{
-    opacity: 0.8;
+li:hover {
+  background-color: #f1f5f9;
 }
 
-.delete-button{
-    background: #e53935;
-    color: white;
+.task-text {
+  font-weight: 500;
+  color: var(--text-main);
+  word-break: break-all;
 }
 
-.delete-button:hover{
-    background: #d32f2f;
+.deadline {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  display: block;
 }
 
-.checkbox{
-    transform: scale(1.8);
-    margin-right: 8px;
-    cursor: pointer;
+/* Buttons inside List */
+button {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+  font-size: 0.85rem;
+  cursor: pointer;
+  font-weight: 500;
 }
 
-.task-text{
-    flex: 1;
-    font-size: 16px;
-    color: #333;
+.edit-button {
+  background-color: #f1f5f9;
+  color: var(--text-main);
 }
 
-.edit-button{
-    background: #1f2937;
-    color: white;
+.edit-button:hover {
+  background-color: #e2e8f0;
 }
 
-li:hover{
-    background: #efefef;
+.delete-button {
+  background-color: #fef2f2;
+  color: var(--danger);
+}
+
+.delete-button:hover {
+  background-color: #fee2e2;
+}
+
+/* Checkbox Styling */
+.checkbox {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: var(--primary-color);
+}
+
+/* Toast Customization (Optional) */
+.Toastify__toast {
+  border-radius: 8px;
+  font-family: inherit;
 }
